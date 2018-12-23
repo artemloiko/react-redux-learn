@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import User from '../components/User';
 import Page from '../components/Page';
+import { setYear } from '../actions/PageActions';
 
 import './App.css';
 
 class App extends Component {
   render() {
-    const { user, page } = this.props;
-
+    const { user, page, setYearAction } = this.props;
     return (
       <div className="App">
         <header className="App-header">
@@ -16,18 +16,26 @@ class App extends Component {
         </header>
         <p className="App-intro">Здесь будут мои самые залайканые фото</p>
         <User name={user.name} />
-        <Page photos={page.photos} year={page.year} />
+        <Page photos={page.photos} year={page.year} setYear={setYearAction} />
       </div>
     );
   }
 }
 
 const mapStateToProps = store => {
-  console.log(store);
   return {
     user: store.user,
     page: store.page,
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    setYearAction: year => dispatch(setYear(year)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
