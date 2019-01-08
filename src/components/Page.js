@@ -26,9 +26,6 @@ class Page extends React.Component {
           <button className="btn" onClick={this.onBtnClick}>
             2018
           </button>{' '}
-          <button className="btn" onClick={this.onBtnClick}>
-            2019
-          </button>{' '}
         </p>
         <h3>{year} год</h3>
         {isFetching ? (
