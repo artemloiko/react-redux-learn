@@ -7,9 +7,10 @@ export function handleLogin() {
     dispatch({
       type: LOGIN_REQUEST,
     });
-    VK.login(r => {
+    window.VK.Auth.login(r => {
+      console.log(r);
       if (r.session) {
-        let username = r.session.user.firstname;
+        let username = r.session.user.first_name;
         dispatch({
           type: LOGIN_SUCCESS,
           payload: username,
